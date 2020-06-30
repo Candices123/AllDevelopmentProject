@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ghyy2.dao.DoctorDutyMapper">
+  <resultMap id="BaseResultMap" type="com.ghyy2.bean.DoctorDuty">
+    <id column="doctorDutyId" jdbcType="INTEGER" property="doctorDutyId" />
+    <result column="doctorId" jdbcType="INTEGER" property="doctorId" />
+    <result column="doctorDate" jdbcType="TIMESTAMP" property="doctorDate" />
+    <result column="timeFlag" jdbcType="BIT" property="timeFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    doctorDutyId, doctorId, doctorDate, timeFlag
+  </sql>
+  <select id="selectByExample" parameterType="com.ghyy2.bean.DoctorDutyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from doctorduty
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctorduty
+    where doctorDutyId = #{doctorDutyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctorduty
+    where doctorDutyId = #{doctorDutyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ghyy2.bean.DoctorDutyExample">
+    delete from doctorduty
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ghyy2.bean.DoctorDuty">
+    insert into doctorduty (doctorDutyId, doctorId, doctorDate, 
+      timeFlag)
+    values (#{doctorDutyId,jdbcType=INTEGER}, #{doctorId,jdbcType=INTEGER}, #{doctorDate,jdbcType=TIMESTAMP}, 
+      #{timeFlag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ghyy2.bean.DoctorDuty">
+    insert into doctorduty
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doctorDutyId != null">
+        doctorDutyId,
+      </if>
+      <if test="doctorId != null">
+        doctorId,
+      </if>
+      <if test="doctorDate != null">
+        doctorDate,
+      </if>
+      <if test="timeFlag != null">
+        timeFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doctorDutyId != null">
+        #{doctorDutyId,jdbcType=INTEGER},
+      </if>
+      <if test="doctorId != null">
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="doctorDate != null">
+        #{doctorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeFlag != null">
+        #{timeFlag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ghyy2.bean.DoctorDutyExample" resultType="java.lang.Long">
+    select count(*) from doctorduty
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update doctorduty
+    <set>
+      <if test="record.doctorDutyId != null">
+        doctorDutyId = #{record.doctorDutyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.doctorId != null">
+        doctorId = #{record.doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.doctorDate != null">
+        doctorDate = #{record.doctorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.timeFlag != null">
+        timeFlag = #{record.timeFlag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update doctorduty
+    set doctorDutyId = #{record.doctorDutyId,jdbcType=INTEGER},
+      doctorId = #{record.doctorId,jdbcType=INTEGER},
+      doctorDate = #{record.doctorDate,jdbcType=TIMESTAMP},
+      timeFlag = #{record.timeFlag,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ghyy2.bean.DoctorDuty">
+    update doctorduty
+    <set>
+      <if test="doctorId != null">
+        doctorId = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="doctorDate != null">
+        doctorDate = #{doctorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeFlag != null">
+        timeFlag = #{timeFlag,jdbcType=BIT},
+      </if>
+    </set>
+    where doctorDutyId = #{doctorDutyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ghyy2.bean.DoctorDuty">
+    update doctorduty
+    set doctorId = #{doctorId,jdbcType=INTEGER},
+      doctorDate = #{doctorDate,jdbcType=TIMESTAMP},
+      timeFlag = #{timeFlag,jdbcType=BIT}
+    where doctorDutyId = #{doctorDutyId,jdbcType=INTEGER}
+  </update>
+</mapper>

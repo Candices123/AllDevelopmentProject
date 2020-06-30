@@ -1,0 +1,69 @@
+/* 整体布局 */
+
+
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.el-header {
+    /* box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.el-main {
+    margin: 10px;
+}
+
+.el-footer {
+    font-size: 12px;
+    background: #fafafa;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    z-index: 2;
+}
+
+
+/* header 头部内容 */
+
+.logo {
+    float: left;
+    width: 35px;
+    height: 40px;
+    margin: 10px 10px;
+}
+
+.text {
+    /* margin-left: 10px; */
+    font-size: 18px;
+    color: #4490f1;
+    float: left;
+    margin-top: 20px;
+    cursor: default;
+}
+
+.dropdown {
+    margin-top: 20px;
+    float: right;
+}
+
+.el-dropdown-link {
+    cursor: pointer;
+    color: #409eff;
+}
+
+.el-icon-arrow-down {
+    font-size: 12px;
+}
